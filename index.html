@@ -33,6 +33,11 @@
             margin: 5px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            color: #000;
+            font-size: 16px;
+        }
+        input[type="text"]::placeholder {
+            color: rgba(0, 0, 0, 0.5);
         }
         .radio-group {
             display: flex;
@@ -77,15 +82,24 @@
         <form id="eventForm">
             <div class="form-group">
                 <label for="pickup-location">Local de Embarque: </label>
-                <input type="text" id="pickup-location" name="pickup-location" required>
+                <input type="text" id="pickup-location" name="pickup-location" placeholder="Endereço" required>
             </div>
             <div class="form-group radio-group">
-                <label><input type="radio" name="time" value="19:00"> 19:00</label>
-                <label><input type="radio" name="time" value="19:30"> 19:30</label>
-                <label><input type="radio" name="time" value="20:00"> 20:00</label>
+                <label><input type="radio" name="time" value="19:00" required> 19:00</label>
+                <label><input type="radio" name="time" value="19:30" required> 19:30</label>
+                <label><input type="radio" name="time" value="20:00" required> 20:00</label>
             </div>
             <div class="form-group">
+                <p>
+                Vantagens: <br>Jantar fora <br>
+                Muitas risadas <br>
+                Falar mau dos outros <br>
+                Melhor noite do ano (até agora)<br>
+                Desvantagens: Comigo
+                </p>
+            
                 <p>Confirmar presença?</p>
+
                 <button type="button" class="btn-yes" onclick="submitForm()">Sim</button>
                 <button type="button" class="btn-no" onclick="avoidClick()">Não</button>
             </div>
@@ -97,6 +111,11 @@
             const location = document.getElementById('pickup-location').value;
             const time = document.querySelector('input[name="time"]:checked');
             
+            if (!location) {
+                alert('Por favor, preencha o local de embarque.');
+                return;
+            }
+
             if (!time) {
                 alert('Por favor, selecione um horário.');
                 return;
